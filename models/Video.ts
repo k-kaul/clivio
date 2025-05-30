@@ -37,4 +37,4 @@ const videoSchema = new Schema<VideoInterface>(
     }, { timestamps: true }
 )
 
-const Video = mongoose.models?.Video || mongoose.model<VideoInterface>("Video",videoSchema)
+export const Video = mongoose.models?.Video || mongoose.model<VideoInterface>("Video",videoSchema)
