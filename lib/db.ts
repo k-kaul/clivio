@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-const MONGODB_URL = process.env.MONGODB_URL!;
+const DATABASE_URL = process.env.DATABASE_URL!;
 
-if(!MONGODB_URL){
+if(!DATABASE_URL){
     throw new Error("Please add a MongoDb URL in env")
 }
 
@@ -23,7 +23,7 @@ export async function connectToDatabase() {
             maxPoolSize: 10
         }
 
-    cached.promise = mongoose.connect(MONGODB_URL,options)
+    cached.promise = mongoose.connect(DATABASE_URL,options)
     .then(()=>mongoose.connection)
     }
     
