@@ -13,8 +13,9 @@ if(!cached){
 }
 
 export async function connectToDatabase() {
-    
+     console.log("Connecting to DB...");
     if(cached.connection){
+         console.log("Using cached DB connection");
         return cached.connection;
     }    
     if(!cached.promise){
@@ -23,8 +24,12 @@ export async function connectToDatabase() {
             maxPoolSize: 10
         }
 
-    cached.promise = mongoose.connect(DATABASE_URL,options)
-    .then(()=>mongoose.connection)
+    cached.promise = mongoose
+    .connect(DATABASE_URL,options)
+    .then(() => {
+        console.log("Mongo connected");
+        return mongoose.connection;
+      });
     }
     
     try {
