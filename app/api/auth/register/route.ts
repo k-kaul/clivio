@@ -12,7 +12,15 @@ export async function POST(req:NextRequest) {
             }, 
         {status: 400})
         }
-        await connectToDatabase();
+        
+        try {
+            await connectToDatabase();    
+        } catch (error) {
+            return NextResponse.json({
+                error: "failed conntecting to db"
+            })
+        }
+        
 
         const existingUser = await User.findOne({email})
         if(existingUser){
